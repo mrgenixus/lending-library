@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 	<html lang="en">
-		<title>Tool Lending</title>
+		<title>Book Lending</title>
 		<meta charset='utf-8'>
 		<script type="text/javascript" src="js/ICanHaz.js"></script>
 		<script type="text/javascript" src='js/jquery.js'></script>
@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		<header class="container">
-			<h1>Tool Lending</h1>
+			<h1>Book Lending</h1>
 			<ul class="nav">
 				<li><strong>LENDING IS LOVELY</strong></li>
 				<li>AN OPEN SOURCE, EASY TO DUPLICATE PROJECT</li>
@@ -20,16 +20,16 @@
 			</ul>
 		</header>
 		<div id="filters" class="container">
-			<input id="toolSearch" type="search" placeholder="hammer.."></input>
+			<input id="bookSearch" type="search" placeholder="hammer.."></input>
 			<span class="clear sml-button">Clear</span>
 			<span id="showAvailable" class="sml-button">Show Available</span>
 		</div>
-		<div id="tools" class="container"><span class="flash animated">LOADING...</span></div>
+		<div id="books" class="container"><span class="flash animated">LOADING...</span></div>
 		<div id="info" class="container">
 				<div class="span1">
 					<h4>CONTRIBUTE TO THIS LIBRARY</h4>
 					<p>If you've been invited by the person who initated this near you, you'll have access and the ability to edit the rows of the spreadsheet feeding data to this site.</p>
-					<p>Simply add the rows for the tools you have and add yes if an item is currently being borrowed. Easy, the Spreadsheet auto-saves, too!</p>
+					<p>Simply add the rows for the books you have and add yes if an item is currently being borrowed. Easy, the Spreadsheet auto-saves, too!</p>
 
 					<p>More details for using this project <a href="http://www.github.com/jlord/lending-library" target="_blank">here</a>.
 
@@ -50,21 +50,21 @@
 				</div>
 		</div>
 
-		<script id="tools" type="text/html">
+		<script id="bookss" type="text/html">
 		{{#rows}}
-		<div id="{{rowNumber}}" class="tool-box {{#checkedout}}not-{{/checkedout}}available">
-			<span class="tool-box-tool">{{tool}}</span>
-			<div class="tool-box-bottom {{rowNumber}}">
-				{{#checkedout}} <span class="tool-box-borrowed">ON LOAN</span>{{/checkedout}}
-				{{^checkedout}}<a href="mailto:{{owneremail}}?subject=Tool Lending: {{tool}}"><span class="tool-box-borrow btn">BORROW</span></a>{{/checkedout}}
+		<div id="{{rowNumber}}" class="book-box {{#checkedout}}not-{{/checkedout}}available">
+			<span class="book-box-book">{{book}}</span>
+			<div class="book-box-bottom {{rowNumber}}">
+				{{#checkedout}} <span class="book-box-borrowed">ON LOAN</span>{{/checkedout}}
+				{{^checkedout}}<a href="mailto:{{owneremail}}?subject=Book Lending: {{book}}"><span class="book-box-borrow btn">BORROW</span></a>{{/checkedout}}
 				<ul>
 					<li><small>WHO / WHERE : </small></li>
 					<li><a href="mailto:{{owneremail}}">{{owner}}</a></li>
 					<li>{{street}}, {{city}}, {{state}}</li>
 					<li><a href="https://maps.google.com/maps?q={{street}},{{city}},{{state}}" target="_blank"><small>MAP</small></a></li>
-					{{#tooldetails}}
-					<li><small>NOTES : </small>{{tooldetails}}</li>
-					{{/tooldetails}}
+					{{#bookdetails}}
+					<li><small>NOTES : </small>{{bookdetails}}</li>
+					{{/bookdetails}}
 				</ul>
 			</div>
 		</div>
@@ -74,7 +74,7 @@
 		<script type="text/javascript">
 		  document.addEventListener('DOMContentLoaded', function() {
 	      var URL = "1iC4LTEySO9Z3PopJIbkMazffjanYFBqUyCY7mqoATHQ"
-	      Tabletop.init( { key: URL, callback: drawToolBox, simpleSheet: true } )
+	      Tabletop.init( { key: URL, callback: drawbookBox, simpleSheet: true } )
 	    })
 		</script>
 	</body>
