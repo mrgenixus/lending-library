@@ -1,8 +1,8 @@
-function drawToolBox(data) {
-  var tools = ich.tools({
+function drawBookBox(data) {
+  var books = ich.books({
     'rows': data
   })
-  $('#tools').html(tools)
+$('#books').html(books)
 }
 
 $(document).on( 'click', '#showAvailable', toggleAvailable)
@@ -13,26 +13,26 @@ $(document).on( 'click', '.clear', function(e) {
     .html('Show Available')
 })
 
-$(document).on('keyup', '#toolSearch', function(e) {
+$(document).on('keyup', '#bookSearch', function(e) {
   var text = $(e.target).val().trim().toLowerCase()
 
   if (text === '') return clearSearch(e)
   if ($('.button-pressed').length === 1) {
     console.log('Hide unavailable')
-    $('.tool-box').filter('.not-available').hide()
+    $('.book-box').filter('.not-available').hide()
   }
-  filterTools(text)
+  filterBooks(text)
 })
 
-$(document).on( 'click', '.tool-box-tool', function(e) {
+$(document).on( 'click', '.book-box-book', function(e) {
   var rowNumber = $(this).closest("div").attr("id")
-  if ($(this).closest('div').hasClass('selected-tool')) {
-    $('.tool-box-bottom' + '.' + rowNumber).css('display', 'none')
-    $(this).closest('div').removeClass('selected-tool')
+  if ($(this).closest('div').hasClass('selected-book')) {
+    $('.book-box-bottom' + '.' + rowNumber).css('display', 'none')
+    $(this).closest('div').removeClass('selected-book')
   }
   else {
-    $('.tool-box-bottom' + '.' + rowNumber).css('display', 'inherit')
-    $(this).closest('div').addClass('selected-tool')
+    $('.book-box-bottom' + '.' + rowNumber).css('display', 'inherit')
+    $(this).closest('div').addClass('selected-book')
   }
 })
 
@@ -46,9 +46,9 @@ function toggleAvailable() {
     console.log('on')
     $('#showAvailable')
       .html('Show Available').removeClass('button-pressed')
-    if ($('#toolSearch').val() != '') {
+    if ($('#bookSearch').val() != '') {
       console.log("search not empty")
-      return filterTools($('#toolSearch').val())
+      return filterBooks($('#bookSearch').val())
     }
     $('.not-available').show()
   }
@@ -56,14 +56,14 @@ function toggleAvailable() {
 
 function clearSearch(e) {
   console.log('clear')
-  $('#toolSearch').val('')
-  drawToolBox(gData)
+  $('#bookSearch').val('')
+  drawBookBox(gData)
 }
 
-function filterTools(text) {
-  $('.tool-box-tool').each(function() {
-  var tool = $(this).html().toLowerCase()
-  if (tool.match(text)) {
+function filterBooks(text) {
+  $('.book-box-book').each(function() {
+  var book = $(this).html().toLowerCase()
+  if (book.match(text)) {
     $(this).parent().show()
   } else $(this).parent().hide()
   })
